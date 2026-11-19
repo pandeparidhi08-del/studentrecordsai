@@ -1,0 +1,8 @@
+Illustrative academic-advisor results (the program calculates the mean of entered available SGPA values):
+
+CGPA: 9.00 — Excellent performance — maintain your current study pattern.
+CGPA: 8.00 — Good performance — keep a steady routine and review challenging topics.
+CGPA: 6.50 — Needs improvement — focus more on subjects with lower SGPA.
+CGPA: 5.50 — Requires immediate attention — meet an academic adviser and make a focused study plan.
+
+Each recommendation is produced locally by the C program's if-else logic. These are sample cases; the program does not use an AI API.

@@ -1,0 +1,9 @@
+Illustrative input sequence (one student is entered, then the advisor is run):
+1, 10001, 11, Asha Rao, 9000000001, asha@example.edu, 1, 2, 9, 8, 0, 0, 0, 0, 0, 0, 8, 10001, 0
+
+Repeat with these available SGPA values to see the other cases:
+- CGPA 8.00 (Good Performance)
+- CGPA 6.50 (Needs Improvement)
+- CGPA 5.50 (Requires Immediate Attention)
+
+At each add prompt, use 0 for every unavailable semester. Exit with menu choice 0.
