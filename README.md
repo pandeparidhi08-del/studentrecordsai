@@ -32,5 +32,6 @@ On Windows, run `student_records.exe` after compiling. Source filename: 59003294
 8. Get academic advice from CGPA
 0. Exit
 
-See `tests/sample_input.txt` and `tests/sample_output.txt` for an illustrative run with three advice categories.
+See `tests/sample_input.txt` and `tests/sample_output.txt` for an illustrative run with four advice categories.
+
 
