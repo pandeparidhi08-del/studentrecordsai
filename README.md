@@ -5,11 +5,11 @@ A menu-driven console project written in C. It stores up to 100 student records 
 ## Build and run
 
 ```sh
-gcc -std=c11 -Wall -Wextra -pedantic SAP_ID.c -o student_records
+gcc -std=c11 -Wall -Wextra -pedantic 590032945.c -o student_records
 ./student_records
 ```
 
-On Windows, run `student_records.exe` after compiling. Rename `SAP_ID.c` to your assigned numeric SAP ID filename before submission (for example, `40001546.c`). Replace `SAP_ID` in the repository filename if your course requires an ID-specific name.
+On Windows, run `student_records.exe` after compiling. Source filename: 590032945.c.
 
 ## Record and calculation notes
 
@@ -33,3 +33,4 @@ On Windows, run `student_records.exe` after compiling. Rename `SAP_ID.c` to your
 0. Exit
 
 See `tests/sample_input.txt` and `tests/sample_output.txt` for an illustrative run with three advice categories.
+
