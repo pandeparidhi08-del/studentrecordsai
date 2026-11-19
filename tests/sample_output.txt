@@ -1,8 +1,8 @@
-Illustrative academic-advisor results (the program calculates the mean of entered available SGPA values):
+The following recommendations are produced by menu choice 8 for the four sample students. Each has one available SGPA, so CGPA equals that value.
 
-CGPA: 9.00 — Excellent performance — maintain your current study pattern.
-CGPA: 8.00 — Good performance — keep a steady routine and review challenging topics.
-CGPA: 6.50 — Needs improvement — focus more on subjects with lower SGPA.
-CGPA: 5.50 — Requires immediate attention — meet an academic adviser and make a focused study plan.
+SAP ID 10001 — CGPA: 9.00 — Excellent performance — maintain your current study pattern.
+SAP ID 10002 — CGPA: 8.00 — Good performance — keep a steady routine and review challenging topics.
+SAP ID 10003 — CGPA: 6.50 — Needs improvement — focus more on subjects with lower SGPA.
+SAP ID 10004 — CGPA: 5.50 — Requires immediate attention — meet an academic adviser and make a focused study plan.
 
-Each recommendation is produced locally by the C program's if-else logic. These are sample cases; the program does not use an AI API.
+All recommendations are produced locally by the C program's if-else logic; the program does not use an AI API.
