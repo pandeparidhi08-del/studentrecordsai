@@ -121,19 +121,73 @@ static void deleteStudent(void) {
     puts("Student record deleted.");
 }
 
+static int compareSap(const void *a, const void *b) {
+    const Student *x = (const Student *)a, *y = (const Student *)b;
+    return (x->sapId > y->sapId) - (x->sapId < y->sapId);
+}
+
+static int compareName(const void *a, const void *b) {
+    const Student *x = (const Student *)a, *y = (const Student *)b;
+    int result = strcmp(x->name, y->name);
+    return result ? result : compareSap(a, b);
+}
+
+static void displaySorted(int byName) {
+    Student copy[MAX_STUDENTS];
+    int i;
+    if (!studentCount) { puts("No student records available."); return; }
+    memcpy(copy, students, (size_t)studentCount * sizeof(Student));
+    qsort(copy, (size_t)studentCount, sizeof(Student), byName ? compareName : compareSap);
+    for (i = 0; i < studentCount; ++i) displayStudent(&copy[i]);
+}
+
+static void averageByYear(void) {
+    int year, i, count;
+    float sum;
+    for (year = 1; year <= 4; ++year) {
+        sum = 0.0f; count = 0;
+        for (i = 0; i < studentCount; ++i) {
+            float cgpa = cgpaOf(&students[i]);
+            if (students[i].year == year && cgpa >= 0.0f) { sum += cgpa; ++count; }
+        }
+        if (count) printf("Year %d average CGPA: %.2f (%d student%s)\n", year, sum / count, count, count == 1 ? "" : "s");
+        else printf("Year %d average CGPA: not available\n", year);
+    }
+}
+
+static void academicAdvisor(void) {
+    int id = readInt("Enter SAP ID for advice: ", 1, 2147483647);
+    int index = findIndex(id);
+    float cgpa;
+    if (index < 0) { puts("Student not found."); return; }
+    cgpa = cgpaOf(&students[index]);
+    if (cgpa < 0.0f) { puts("No SGPA results are available for this student yet."); return; }
+    printf("CGPA: %.2f — ", cgpa);
+    if (cgpa >= 9.0f) puts("Excellent performance — maintain your current study pattern.");
+    else if (cgpa >= 7.5f) puts("Good performance — keep a steady routine and review challenging topics.");
+    else if (cgpa >= 6.0f) puts("Needs improvement — focus more on subjects with lower SGPA.");
+    else puts("Requires immediate attention — meet an academic adviser and make a focused study plan.");
+}
+
 int main(void) {
     int choice;
     do {
         puts("\n=== Student Record and Result Management System ===");
-        puts("1. Add student\n2. Search student\n3. Display all students\n4. Delete student\n0. Exit");
-        choice = readInt("Choice: ", 0, 4);
+        puts("1. Add student\n2. Search student\n3. Display all students\n4. Delete student");
+        puts("5. Average CGPA by year\n6. Sort by SAP ID\n7. Sort by name\n8. Academic advisor\n0. Exit");
+        choice = readInt("Choice: ", 0, 8);
         switch (choice) {
             case 1: addStudent(); break;
             case 2: searchStudent(); break;
             case 3: displayAll(); break;
             case 4: deleteStudent(); break;
+            case 5: averageByYear(); break;
+            case 6: displaySorted(0); break;
+            case 7: displaySorted(1); break;
+            case 8: academicAdvisor(); break;
             case 0: puts("Goodbye."); break;
         }
     } while (choice != 0);
     return 0;
 }
+
