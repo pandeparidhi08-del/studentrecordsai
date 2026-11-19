@@ -27,6 +27,13 @@ static void readLine(const char *prompt, char *buffer, size_t size) {
     buffer[strcspn(buffer, "\r\n")] = '\0';
 }
 
+static void readRequired(const char *prompt, char *buffer, size_t size) {
+    do {
+        readLine(prompt, buffer, size);
+        if (buffer[0] == '\0') puts("This field cannot be empty.");
+    } while (buffer[0] == '\0');
+}
+
 static int readInt(const char *prompt, int min, int max) {
     char line[80], *end;
     long value;
@@ -81,9 +88,9 @@ static void addStudent(void) {
     s.sapId = readInt("SAP ID: ", 1, 2147483647);
     if (findIndex(s.sapId) >= 0) { puts("That SAP ID already exists."); return; }
     s.rollNo = readInt("Roll No.: ", 1, 2147483647);
-    readLine("Name: ", s.name, sizeof s.name);
-    readLine("Phone No.: ", s.phone, sizeof s.phone);
-    readLine("Email ID: ", s.email, sizeof s.email);
+    readRequired("Name: ", s.name, sizeof s.name);
+    readRequired("Phone No.: ", s.phone, sizeof s.phone);
+    readRequired("Email ID: ", s.email, sizeof s.email);
     s.year = readInt("Year (1-4): ", 1, 4);
     s.semester = readInt("Current semester (1-8): ", 1, 8);
     for (i = 0; i < SEMESTERS; ++i) s.sgpa[i] = -1.0f;
@@ -190,4 +197,5 @@ int main(void) {
     } while (choice != 0);
     return 0;
 }
+
 
